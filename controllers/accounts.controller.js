@@ -113,6 +113,8 @@ function addAccounts(req, res)
         return res.status(200).json({ status: false, errorName: 'secretAnswer', message: 'Answer to secret question cannot be empty' });
     } else if (!address) {
         return res.status(200).json({ status: false, errorName: 'address', message: 'Address cannot be empty' });
+    } else if (!birthday) {
+        return res.status(200).json({ status: false, errorName: 'birthday', message: 'Birthday cannot be empty' });
     } else if (!password) {
         return res.status(200).json({ status: false, errorName: 'password', message: 'Password cannot be empty' });
     }

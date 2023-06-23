@@ -32,7 +32,7 @@ const accountsSchema = new mongoose.Schema({
     },
     birthday: {
         type: String,
-        required: false,
+        required: true,
     },
     reservation: {
         type: String,
