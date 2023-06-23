@@ -1,13 +1,14 @@
 let accountsMongo = require('../models/accounts.mongo');
 let recordsMongo = require('../models/records.mongo');
 
+
 function getAllAccounts (req, res) 
 {
     accountsMongo.find({}).then(async (accounts) => {
         await res.status(200).json(accounts);
     });
-
 }
+
 
 function logIn(req, res)
 {
@@ -18,7 +19,6 @@ function logIn(req, res)
     
      //find the username that matches from postman input
     accountsMongo.find({email: email, password: password}).then(async (accounts)=> {
-
         if (accounts.length) 
         {
                 res.status(200).json({
@@ -32,11 +32,9 @@ function logIn(req, res)
                 message: (INVALID_INPUT)
             })
         }
-
-    });
-
-    
+    });    
 }
+
 
 function changePassword(req, res)
 {
@@ -64,9 +62,9 @@ function changePassword(req, res)
         else{
             return !newPassword || !confirmPassword || !validNewPassword ? res.send(PASSWORDS_NOT_MATCH) : res.send(INVALID_INFO);
         }
-
     });
 }
+
 
 function forgotPassword(req, res)
 {
@@ -95,16 +93,13 @@ function forgotPassword(req, res)
         else{
             return !newPassword || !confirmPassword || !validNewPassword ? res.send(PASSWORDS_NOT_MATCH) : res.send(INVALID_INFO);
         }
-
     });
-
-
 }
 
 
 function addAccounts(req, res) 
 {
-    const { email, password, firstName, lastName, confirmPassword, secretQuestion, secretAnswer, reservation } = req.body;
+    const { email, password, firstName, lastName, confirmPassword, secretQuestion, secretAnswer, reservation, address, birthday } = req.body;
 
     if (!firstName) {
         return res.status(200).json({ status: false, errorName: 'firstName', message: 'First name cannot be empty' }); 
@@ -116,6 +111,8 @@ function addAccounts(req, res)
         return res.status(200).json({ status: false, errorName: 'secretQuestion', message: 'Secret question cannot be empty' });
     } else if (!secretAnswer) {
         return res.status(200).json({ status: false, errorName: 'secretAnswer', message: 'Answer to secret question cannot be empty' });
+    } else if (!address) {
+        return res.status(200).json({ status: false, errorName: 'address', message: 'Address cannot be empty' });
     } else if (!password) {
         return res.status(200).json({ status: false, errorName: 'password', message: 'Password cannot be empty' });
     }
@@ -148,13 +145,14 @@ function addAccounts(req, res)
     //Check email if it already exists in database
     accountsMongo.find({email: email}).then(async (account) => {
         if (!account.length) {
-            await accountsMongo.create({ email, password, firstName, lastName, secretQuestion, secretAnswer, reservation });
+            await accountsMongo.create({ email, password, firstName, lastName, secretQuestion, secretAnswer, reservation, address, birthday });
             res.status(200).json({ status: true, message: `Account ${email} successfully registered!`});
         } else {
             return res.status(200).json({status: false, errorName: 'dupEmail', message: 'Email already in use'});
         }
     })
 }
+
 
 
 module.exports = 

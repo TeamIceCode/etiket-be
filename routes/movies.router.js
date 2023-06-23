@@ -11,9 +11,13 @@ moviesRouter.post('/addMovieSeats', moviesController.addSeats);
 moviesRouter.get('/getMovieSeatsByTitle', moviesController.getSeatsByTitle);
 moviesRouter.get('/getMovieSeatsByPrice', moviesController.getSeatsByPrice);
 moviesRouter.get('/getMovieSeatsBySchedule', moviesController.getSeatsBySchedule);
-moviesRouter.get('/getMovieSeatsByTitleAndSchedule', moviesController.getSeatsByTitleAndSchedule);
 moviesRouter.get('/getMovieSeatsByTitleAndStatus', moviesController.getSeatsByTitleAndStatus);
 moviesRouter.get('/getMovieSeatsByBarcode', moviesController.getSeatsByBarcode);
 moviesRouter.get('/getMovieSeatsByReservation', moviesController.getSeatsByReservation);
+moviesRouter.get('/getExpiredChecker', moviesController.expiredChecker);
+moviesRouter.put('/payment', moviesController.payTicket);
+moviesRouter.get('/getAllSeatsByMyReservations', moviesController.getAllSeatsByMyReservations);
+moviesRouter.get('/getSeatsByStatus', moviesController.getSeatsByStatus);
+
 
 module.exports = moviesRouter;

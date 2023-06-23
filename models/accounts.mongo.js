@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const accountsSchema = new mongoose.Schema({
     email: {
@@ -24,6 +25,14 @@ const accountsSchema = new mongoose.Schema({
     secretAnswer: {
         type: String,
         required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    birthday: {
+        type: String,
+        required: false,
     },
     reservation: {
         type: String,

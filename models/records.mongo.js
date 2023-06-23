@@ -10,6 +10,10 @@ const recordsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    expiration: {
+        type: String,
+        required: false,
+    },
     seatNumber: {
         type: Number,
         required: true,
@@ -24,7 +28,7 @@ const recordsSchema = new mongoose.Schema({
     },
     payment: {
         type: String,
-        required: true,
+        required: false,
     },
     barcode: {
         type: String,
@@ -34,10 +38,14 @@ const recordsSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    expiration: {
-        type: String,
+    expireX: {
+        type: Number,
         required: false,
     },
+    scheduleX: {
+        type: Number,
+        required: false,
+    } ,
 
 })
 

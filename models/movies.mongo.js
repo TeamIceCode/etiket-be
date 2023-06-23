@@ -10,6 +10,10 @@ const moviesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    expiration: {
+        type: String,
+        required: false,
+    },
     seatNumber: {
         type: Number,
         required: true,
@@ -22,6 +26,10 @@ const moviesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    payment: {
+        type: String,
+        required: false,
+    },
     barcode: {
         type: String,
         required: false,
@@ -30,10 +38,14 @@ const moviesSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    expiration: {
-        type: String,
+    expireX: {
+        type: Number,
         required: false,
-    },   
+    },
+    scheduleX: {
+        type: Number,
+        required: false,
+    } ,
 
 });
 
