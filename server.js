@@ -15,7 +15,7 @@ mongoose.connection.on('error', (err) => {
 
 //Register a middleware function that parses incoming JSON payloads/requests
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({ origin: 'https://etiket-com-mu.vercel.app/' }))
 
 // middleware logger
 app.use((req, res, next) => {
